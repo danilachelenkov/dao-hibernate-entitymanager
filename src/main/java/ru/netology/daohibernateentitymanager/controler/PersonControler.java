@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.netology.daohibernateentitymanager.repository.PersonRepository;
 
-
 @RestController
 public class PersonControler {
     @Autowired
@@ -16,6 +15,7 @@ public class PersonControler {
 
     @GetMapping("/persons/by-city")
     public ResponseEntity<?> getPersonsByCity(@RequestParam String city) {
+        personRepository.checkAndFillForTest();
         return new ResponseEntity<>(personRepository.getPersonsByCity(city), HttpStatus.OK);
     }
 

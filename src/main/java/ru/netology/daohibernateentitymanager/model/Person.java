@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@IdClass(PersonId.class)
 public class Person {
     @Id
     @Column(nullable = false, length = 100)

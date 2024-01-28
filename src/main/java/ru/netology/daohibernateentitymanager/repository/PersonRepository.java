@@ -5,11 +5,12 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import ru.netology.daohibernateentitymanager.model.Gender;
 import ru.netology.daohibernateentitymanager.model.Person;
+import ru.netology.daohibernateentitymanager.model.PersonId;
 
 import java.util.List;
 
 @Repository
-public class PersonRepository {
+public class PersonRepository implements PersonStoragable {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -26,10 +27,7 @@ public class PersonRepository {
 
     @Transactional
     public void checkAndFillForTest() {
-        Person pKey = new Person();
-        pKey.setName("Ivan");
-        pKey.setSurname("Efremov");
-        pKey.setAge(18);
+        PersonId pKey = new PersonId("Ivan", "Efremov",18);
 
         Person person = entityManager.find(Person.class, pKey);
         if (person == null) {

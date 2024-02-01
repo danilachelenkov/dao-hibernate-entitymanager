@@ -5,19 +5,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.netology.daohibernateentitymanager.model.Message;
 import ru.netology.daohibernateentitymanager.model.Person;
 import ru.netology.daohibernateentitymanager.repository.PersonJpaRepository;
 
-import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 public class PersonControler {
-    private PersonJpaRepository personJpaRepository;
+    private final PersonJpaRepository personJpaRepository;
 
     public PersonControler(PersonJpaRepository personJpaRepository) {
         this.personJpaRepository = personJpaRepository;
+    }
+
+    @GetMapping("/persons")
+    public ResponseEntity<?> getEnterData(){
+        return new ResponseEntity<>(new Message("Hi am a service! Lets check you rights?"), HttpStatus.OK);
     }
 
     @GetMapping("/persons/by-city")

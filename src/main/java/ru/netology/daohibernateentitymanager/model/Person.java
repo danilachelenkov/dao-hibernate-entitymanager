@@ -1,19 +1,25 @@
 package ru.netology.daohibernateentitymanager.model;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Entity;
+
+import javax.persistence.*;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@IdClass(PersonId.class)
 public class Person {
-    @Id
+
+    @EmbeddedId
+    private PersonId personId;
+
+    /*@Id
     @Column(nullable = false, length = 100)
     private String name;
 
@@ -23,7 +29,7 @@ public class Person {
 
     @Id
     @Column(nullable = false)
-    private Integer age;
+    private Integer age;*/
 
     @Enumerated(EnumType.STRING)
     @Column(length = 30)
@@ -35,6 +41,6 @@ public class Person {
 
     @Column(nullable = false,
             length = 120,
-    name = "city_of_living")
+            name = "city_of_living")
     private String cityOfLiving;
 }

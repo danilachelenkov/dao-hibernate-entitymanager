@@ -35,6 +35,6 @@ public class Person {
 
     @Column(nullable = false,
             length = 120,
-    name = "city_of_living")
+            name = "city_of_living")
     private String cityOfLiving;
 }
